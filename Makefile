@@ -27,13 +27,15 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	#$(CC) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 #libfta:
 #	@cd $(LIB) && make
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	#$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 bonus:
 	$(MAKE) all
