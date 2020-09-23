@@ -188,9 +188,20 @@ int            render_next_frame(t_vars *vars)
     return (1);
 }
 
-int             move(int keycode, t_vars *vars)
+/*int             key_press_hook(int keycode, t_vars *vars)
+{
+    double moveSpeed = 0.01 * 5.0;
+
+    keycode--;
+    if(!worldMap[(int)(vars->pos->posX + vars->pos->dirX * moveSpeed)][(int)(vars->pos->posY)]) vars->pos->posX += vars->pos->dirX * moveSpeed;
+    if(!worldMap[(int)(vars->pos->posX)][(int)(vars->pos->posY + vars->pos->dirY * moveSpeed)]) vars->pos->posY += vars->pos->dirY * moveSpeed;
+    return 1;
+}*/
+
+int             key_press_hook(int keycode, t_vars *vars)
 {
     double rotSpeed = 0.01 * 3.0;
+    double moveSpeed = 0.01 * 5.0;
 
     if (keycode == 0xff53)
     {
@@ -202,7 +213,7 @@ int             move(int keycode, t_vars *vars)
       vars->pos->planeX = vars->pos->planeX * cos(-rotSpeed) - vars->pos->planeY * sin(-rotSpeed);
       vars->pos->planeY = oldPlaneX * sin(-rotSpeed) +vars->pos-> planeY * cos(-rotSpeed);
     }
-    if(keycode == 0xff51)
+    if (keycode == 0xff51)
     {
       //both camera direction and camera plane must be rotated
       double oldDirX = vars->pos->dirX;
@@ -211,6 +222,17 @@ int             move(int keycode, t_vars *vars)
       double oldPlaneX = vars->pos->planeX;
       vars->pos->planeX = vars->pos->planeX * cos(rotSpeed) - vars->pos->planeY * sin(rotSpeed);
       vars->pos->planeY = oldPlaneX * sin(rotSpeed) + vars->pos->planeY * cos(rotSpeed);
+    }
+    if (keycode == 0x0077)
+    {
+      if(!worldMap[(int)(vars->pos->posX + vars->pos->dirX * moveSpeed)][(int)(vars->pos->posY)]) vars->pos->posX += vars->pos->dirX * moveSpeed;
+      if(!worldMap[(int)(vars->pos->posX)][(int)(vars->pos->posY + vars->pos->dirY * moveSpeed)]) vars->pos->posY += vars->pos->dirY * moveSpeed;
+    }
+    //move backwards if no wall behind you
+    if (keycode == 0x0073)
+    {
+      if(!worldMap[(int)(vars->pos->posX - vars->pos->dirX * moveSpeed)][(int)(vars->pos->posY)]) vars->pos->posX -= vars->pos->dirX * moveSpeed;
+      if(!worldMap[(int)(vars->pos->posX)][(int)(vars->pos->posY - vars->pos->dirY * moveSpeed)]) vars->pos->posY -= vars->pos->dirY * moveSpeed;
     }
     return (1);
 }
@@ -241,7 +263,8 @@ int             main(void)
     vars.img = &img;
     vars.pos = &pos;
     //mlx_mouse_hook(vars.win, close, &vars);
-    mlx_key_hook(vars.win, move, &vars);
+    //mlx_key_hook(vars.win, move, &vars);
+    mlx_hook(vars.win, 2, (1L<<0), key_press_hook, &vars);
     mlx_loop_hook(vars.mlx, render_next_frame, &vars);
     mlx_loop(vars.mlx);
 }
