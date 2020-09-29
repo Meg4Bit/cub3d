@@ -24,14 +24,14 @@ else
 	OBJ_FILES = $(OBJ)
 endif
 
-all: $(NAME)
+all: libfta $(NAME)
 
 $(NAME): $(OBJ)
 	#$(CC) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	$(CC) $(OBJ) -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(LIB) -lft -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lbsd -o $(NAME)
 
-#libfta:
-#	@cd $(LIB) && make
+libfta:
+	@cd $(LIB) && make
 
 %.o: %.c
 	#$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
