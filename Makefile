@@ -1,20 +1,12 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/06/09 18:18:13 by ametapod          #+#    #+#              #
-#    Updated: 2020/06/09 18:18:13 by ametapod         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = cub3D
 LIB = libft
 CC = gcc
 HEADER = ft_printf.h
-SRC = main.c
+DIR = srcs
+SRC =   $(DIR)/main.c\
+		$(DIR)/utils.c\
+		$(DIR)/ray_caster.c\
+		$(DIR)/print_sprite.c\
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
@@ -35,13 +27,13 @@ libfta:
 
 %.o: %.c
 	#$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I/srcs -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 bonus:
 	$(MAKE) all
 
 clean:
-	/bin/rm -f *.o
+	/bin/rm -f */*.o
 
 fclean: clean
 	/bin/rm -f $(NAME)
