@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 12:26:57 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 16:37:43 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/02 17:43:03 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				main(int argc, char **argv)
 	img.addr = mlx_get_data_addr(img.img, &img.bps,
 									&img.line_len, &img.endian);
 	if (argc == 3)
-		return (free_app(&vars, 1, 0));
+		create_bmp(&vars);
 	else
 		my_loop(&vars);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 13:26:33 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 15:15:49 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/02 20:30:05 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int				render_next_frame(t_vars *vars)
 	}
 	if (vars->num_spr > 0)
 		print_sprite(vars, vars->pos);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
+	if (vars->win)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
 	move_body(vars, vars->pos);
 	return (1);
 }

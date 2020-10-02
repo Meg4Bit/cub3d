@@ -14,7 +14,8 @@ SRC =   $(DIR)/main.c\
 		$(DIR)/check_args.c\
 		$(DIR)/vars_setup.c\
 		$(DIR)/parse_map.c\
-		$(DIR)/free_all.c
+		$(DIR)/free_all.c\
+		$(DIR)/bmp.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
