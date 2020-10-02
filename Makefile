@@ -7,16 +7,18 @@ SRC =   $(DIR)/main.c\
 		$(DIR)/utils.c\
 		$(DIR)/ray_caster.c\
 		$(DIR)/print_sprite.c\
+		$(DIR)/render_next_frame.c\
+		$(DIR)/key_hooks.c\
+		$(DIR)/text_load.c\
+		$(DIR)/read_file.c\
+		$(DIR)/check_args.c\
+		$(DIR)/vars_setup.c\
+		$(DIR)/parse_map.c\
+		$(DIR)/free_all.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
-ifdef WITH_BONUS
-	OBJ_FILES = $(OBJBONUS)
-else
-	OBJ_FILES = $(OBJ)
-endif
-
-all: libfta $(NAME)
+all: minilibx libfta $(NAME)
 
 $(NAME): $(OBJ)
 	#$(CC) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
@@ -25,9 +27,12 @@ $(NAME): $(OBJ)
 libfta:
 	@cd $(LIB) && make
 
+minilibx:
+	cd mlx_linux && make
+
 %.o: %.c
 	#$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
-	$(CC) $(CFLAGS) -I/srcs -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 bonus:
 	$(MAKE) all

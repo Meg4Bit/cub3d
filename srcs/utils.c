@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 12:14:46 by ametapod          #+#    #+#             */
-/*   Updated: 2020/09/29 12:15:47 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:16:29 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			my_mlx_pixel_put(t_img *data, int x, int y, int color)
 
 int				create_rgb(int r, int g, int b)
 {
-	return(r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }
 
 void			clear_img(t_img *img, int x, int draw_start, int draw_end)
@@ -32,4 +32,14 @@ void			clear_img(t_img *img, int x, int draw_start, int draw_end)
 	y = draw_start;
 	while (y <= draw_end)
 		my_mlx_pixel_put(img, x, y++, 0);
+}
+
+int				error_msg(char *msg)
+{
+	ft_putstr_fd("Error\n", 2);
+	if (errno)
+		perror(msg);
+	else
+		ft_putstr_fd(msg, 2);
+	return (0);
 }

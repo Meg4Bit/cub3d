@@ -6,15 +6,21 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 11:52:32 by ametapod          #+#    #+#             */
-/*   Updated: 2020/09/29 12:16:09 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/02 16:16:43 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
+# define BUFFER_SIZE 128
 # include <mlx.h>
 # include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <stdio.h>
 # include "../libft/libft.h"
 
 typedef struct	s_img {
@@ -27,7 +33,7 @@ typedef struct	s_img {
 	int			height;
 }				t_img;
 
-typedef struct  s_pos {
+typedef struct	s_pos {
 	double		x;
 	double		y;
 	double		dirx;
@@ -35,10 +41,10 @@ typedef struct  s_pos {
 	double		planex;
 	double		planey;
 	double		rot_speed;
-	double		move_speed;
+	double		ms;
 	double		move_hor;
 	double		*wall_buf;
-	double		sprDist[2];
+	double		*spr_dist;
 }				t_pos;
 
 typedef struct	s_ray {
@@ -59,7 +65,7 @@ typedef struct	s_ray {
 	int			draw_end;
 }				t_ray;
 
-typedef struct	s_spRay {
+typedef struct	s_spray {
 	int			move_spr;
 	double		transx;
 	double		transy;
@@ -70,7 +76,7 @@ typedef struct	s_spRay {
 	int			draw_endx;
 	int			draw_starty;
 	int			draw_endy;
-}				t_spRay;
+}				t_spray;
 
 typedef struct	s_sprite {
 	double		x;
@@ -83,7 +89,8 @@ typedef struct	s_vars {
 	t_pos		*pos;
 	t_img		*img;
 	t_img		tex[5];
-	t_sprite	spr[2];
+	t_sprite	*spr;
+	char		**map;
 	int			num_spr;
 	int			d_width;
 	int			d_height;
@@ -94,5 +101,18 @@ typedef struct	s_vars {
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int				create_rgb(int r, int g, int b);
 void			clear_img(t_img *img, int x, int draw_start, int draw_end);
+int				free_app(t_vars *vars, int flag, char *msg);
+void			print_sprite(t_vars *vars, t_pos *pos);
+t_ray			ray_casting(t_vars *vars, int x, t_img *img);
+int				render_next_frame(t_vars *vars);
+int				exit_hook(int keycode);
+int				key_press_hook(int keycode, t_vars *vars);
+int				key_release_hook(int keycode, t_vars *vars);
+int				load_textures(t_vars *vars, char *line, int *num);
+int				error_msg(char *msg);
+int				check_args(int argc, char **argv);
+int				read_file(char *file_name, t_vars *vars);
+int				parse_map(char *line, t_vars *vars, int *num, int fd);
+int				vars_setup(t_vars *vars);
 
 #endif
