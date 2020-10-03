@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 16:03:08 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 15:42:16 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/03 11:57:51 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int		check_free(t_vars *vars, char *line, int *num, int fd)
 	free(line);
 	while (get_next_line(fd, &line))
 		free(line);
+	free(line);
 	if (close(fd))
 		return (error_msg("Close error"));
 	return (0);
@@ -114,9 +115,12 @@ int				read_file(char *file_name, t_vars *vars)
 	char	*line;
 	int		*num;
 
-	num = ft_calloc(8, sizeof(int));
 	if ((fd = open(file_name, O_RDONLY)) < 0)
+	{
+		free(vars->mlx);
 		return (error_msg("Open error"));
+	}
+	num = ft_calloc(8, sizeof(int));
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (*line)
