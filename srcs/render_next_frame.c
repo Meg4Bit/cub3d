@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 13:26:33 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 20:30:05 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/06 12:50:06 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		print_line(t_vars *vars, t_img *img, int x, t_ray ray)
 	y = 0;
 	while (y < ray.draw_start)
 		my_mlx_pixel_put(vars->img, x, y++, vars->floor_color);
-	while (y < ray.draw_end)
+	while (y <= ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (img->height - 1);
 		tex_pos += step;

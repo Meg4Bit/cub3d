@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 17:34:33 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 15:33:32 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/05 14:29:48 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ static int		check_str(char *map)
 	{
 		if (map[i] == ' ')
 			map[i] = '1';
+		if (map[i] != '1' && map[i] != '2' && map[i] != '0' && map[i] != 'N' &&
+					map[i] != 'S' && map[i] != 'W' && map[i] != 'E')
+			return (0);
 		i++;
 	}
 	if (*map != '1' || *(ft_strrchr(map, 0) - 1) != '1')
 		return (0);
 	while (*map)
 	{
-		if (*map != '1' && *map != '2' && *map != '0' && *map != 'N' &&
-					*map != 'S' && *map != 'W' && *map != 'E')
-			return (0);
 		if (*map != '1')
 			return (-1);
 		map++;

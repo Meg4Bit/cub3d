@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 15:44:05 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 16:41:04 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/06 12:48:06 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int				key_press_hook(int keycode, t_vars *vars)
 	if (keycode == 0xff51)
 		vars->pos->rot_speed = 0.03;
 	if (keycode == 0x0077)
-		vars->pos->ms = 0.05;
+		vars->pos->ms = 0.051;
 	if (keycode == 0x0073)
-		vars->pos->ms = -0.05;
+		vars->pos->ms = -0.051;
 	if (keycode == 0x0061)
-		vars->pos->move_hor = -0.05;
+		vars->pos->move_hor = -0.051;
 	if (keycode == 0x0064)
-		vars->pos->move_hor = 0.05;
+		vars->pos->move_hor = 0.051;
 	if (keycode == 0xff1b)
 		free_app(vars, 1, 0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/02 16:56:16 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 21:47:31 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/05 13:14:49 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int		set_colors(t_vars *vars, int fd)
 		arr[j++] = color & 255;
 		arr[j++] = (color >> 8) & 255;
 		arr[j++] = (color >> 16) & 255;
+		arr[j++] = 0;
 		i++;
 	}
 	j = write(fd, arr, size * 4);
@@ -53,7 +54,7 @@ static void		set_bmp(t_vars *vars, t_bfh *bfh, t_bih *bih)
 	bih->width = vars->d_width;
 	bih->height = -vars->d_height;
 	bih->planes = 1;
-	bih->bit_count = 24;
+	bih->bit_count = 32;
 	bih->compression = 0;
 	bih->image_size = image_size;
 	bih->ppm_x = ppm;

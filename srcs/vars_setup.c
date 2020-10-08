@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 23:04:00 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/02 16:31:55 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/06 12:12:52 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		set_pos(t_vars *vars, char dir, int x, int y)
 {
 	vars->pos->x = x + 0.5;
 	vars->pos->y = y + 0.5;
-	if (dir == 'N' || dir == 's')
+	if (dir == 'N' || dir == 'S')
 	{
 		vars->pos->dirx = 1;
 		vars->pos->diry = 0;

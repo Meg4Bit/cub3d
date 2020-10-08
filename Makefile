@@ -22,7 +22,6 @@ CFLAGS = -Wall -Wextra -Werror
 all: minilibx libfta $(NAME)
 
 $(NAME): $(OBJ)
-	#$(CC) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	$(CC) $(OBJ) -Lmlx_linux -lmlx -L$(LIB) -lft -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lbsd -o $(NAME)
 
 libfta:
@@ -32,7 +31,6 @@ minilibx:
 	cd mlx_linux && make
 
 %.o: %.c
-	#$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 bonus:
