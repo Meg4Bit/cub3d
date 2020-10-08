@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 13:26:33 by ametapod          #+#    #+#             */
-/*   Updated: 2020/10/06 12:50:06 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/10/08 19:59:19 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		print_line(t_vars *vars, t_img *img, int x, t_ray ray)
 					* step;
 	y = 0;
 	while (y < ray.draw_start)
-		my_mlx_pixel_put(vars->img, x, y++, vars->floor_color);
+		my_mlx_pixel_put(vars->img, x, y++, vars->ceil_color);
 	while (y <= ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (img->height - 1);
@@ -37,7 +37,7 @@ static void		print_line(t_vars *vars, t_img *img, int x, t_ray ray)
 					(tex_y * img->line_len + tex_x * (img->bps / 8))));
 	}
 	while (y < vars->d_height)
-		my_mlx_pixel_put(vars->img, x, y++, vars->ceil_color);
+		my_mlx_pixel_put(vars->img, x, y++, vars->floor_color);
 }
 
 static void		move_body(t_vars *vars, t_pos *pos)
