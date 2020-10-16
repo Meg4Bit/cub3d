@@ -1,7 +1,6 @@
 NAME = cub3D
 LIB = libft
 CC = gcc
-HEADER = ft_printf.h
 DIR = srcs
 SRC =   $(DIR)/main.c\
 		$(DIR)/utils.c\
